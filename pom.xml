@@ -6,6 +6,12 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+        <relativePath/>
+    </parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,69 +27,53 @@
 		<fastDFS.client.version>1.26.1-RELEASE</fastDFS.client.version>
 	</properties>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.4.RELEASE</version>
-		<relativePath />
-	</parent>
-
 	<dependencyManagement>
-		<dependencies>
-			<!-- springCloud -->
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<!-- 通用Mapper启动器 -->
-			<dependency>
-				<groupId>tk.mybatis</groupId>
-				<artifactId>mapper-spring-boot-starter</artifactId>
-				<version>${mapper.starter.version}</version>
-			</dependency>
-			<!-- 分页助手启动器 -->
-			<dependency>
-				<groupId>com.github.pagehelper</groupId>
-				<artifactId>pagehelper-spring-boot-starter</artifactId>
-				<version>${pageHelper.starter.version}</version>
-			</dependency>
-			<!-- mysql驱动 -->
-			<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
-				<version>${mysql.version}</version>
-			</dependency>
-			<!--FastDFS客户端 -->
-			<dependency>
-				<groupId>com.github.tobato</groupId>
-				<artifactId>fastdfs-client</artifactId>
-				<version>${fastDFS.client.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
-	<dependencies>
-		<!-- JavaTools Missing问题 -->
-		<dependency>
-			<groupId>jdk.tools</groupId>
-			<artifactId>jdk.tools</artifactId>
-			<version>1.8</version>
-			<scope>system</scope>
-			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-	</dependencies>
+        <dependencies>
+            <!-- springCloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 通用Mapper启动器 -->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${mapper.starter.version}</version>
+            </dependency>
+            <!-- 分页助手启动器 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pageHelper.starter.version}</version>
+            </dependency>
+            <!-- mysql驱动 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!--FastDFS客户端-->
+            <dependency>
+                <groupId>com.github.tobato</groupId>
+                <artifactId>fastdfs-client</artifactId>
+                <version>${fastDFS.client.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
 	<!-- 构建插件 -->
 	<build>

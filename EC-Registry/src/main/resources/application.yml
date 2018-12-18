@@ -6,7 +6,7 @@ server:
 eureka:
   client:
     fetch-registry: false	# 因为是Server,所以不需要定时获取同步
-    register-with-eureka: false
+    register-with-eureka: false # 服务端不需要注册自己
     service-url:
       defaultZone: http://127.0.0.1:${server.port}/eureka
   server:
