@@ -89,5 +89,6 @@
 		<module>EC-Registry</module>
 		<module>EC-Gateway</module>
 		<module>EC-Commodity</module>
+		<module>EC-Common</module>
 	</modules>
 </project>
