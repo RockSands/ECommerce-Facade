@@ -1,4 +1,4 @@
-package com.ec.registry.common;
+package com.ec.registry;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
