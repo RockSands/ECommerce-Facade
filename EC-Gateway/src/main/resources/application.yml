@@ -14,9 +14,9 @@ zuul:
 ribbon: # 负载均衡
   ConnectTimeout: 1000 # 连接超时时间(ms)
   ReadTimeout: 3000 # 通信超时时间(ms)
-  OkToRetryOnAllOperations: true # 是否对所有操作重试
-  MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
-  MaxAutoRetries: 1 # 同一实例的重试次数
+  OkToRetryOnAllOperations: false # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 0 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 0 # 同一实例的重试次数
 hystrix:
   command:
     default:
