@@ -98,5 +98,6 @@
 	<modules>
 		<module>EC-Registry</module>
 		<module>EC-Gateway</module>
+		<module>EC-Commodity</module>
 	</modules>
 </project>

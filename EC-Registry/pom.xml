@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>EC-Registry</artifactId>
 	<name>EC-Registry</name>
-	<description>服务注册</description>
+	<description>服务注册中心</description>
 	
 	<!-- 服务注册中心 -->
 	<dependencies>
