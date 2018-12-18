@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>ECommerce-Facade</groupId>
+	<groupId>ecommerce.facade</groupId>
 	<artifactId>ECommerce-Facade</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 
@@ -17,7 +17,7 @@
 		<mapper.starter.version>2.0.3</mapper.starter.version>
 		<mysql.version>5.1.32</mysql.version>
 		<pageHelper.starter.version>1.2.5</pageHelper.starter.version>
-		<leyou.latest.version>1.0.0-SNAPSHOT</leyou.latest.version>
+		<ecommerce.facade.latest.version>1.0.0-SNAPSHOT</ecommerce.facade.latest.version>
 		<fastDFS.client.version>1.26.1-RELEASE</fastDFS.client.version>
 	</properties>
 
