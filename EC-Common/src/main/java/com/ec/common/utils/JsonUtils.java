@@ -12,7 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * @author: HuYi.Zhang
+ * @author: CKW
  * @create: 2018-04-24 17:20
  **/
 public class JsonUtils {
