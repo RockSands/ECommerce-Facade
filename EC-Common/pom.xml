@@ -6,6 +6,7 @@
 		<artifactId>ECommerce-Facade</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
+	<groupId>ecommerce.common</groupId>
 	<artifactId>EC-Common</artifactId>
 
 

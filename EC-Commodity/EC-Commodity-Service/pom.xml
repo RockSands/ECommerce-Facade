@@ -44,6 +44,11 @@
 			<version>${ecommerce.facade.latest.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>ecommerce.common</groupId>
+			<artifactId>EC-Common</artifactId>
+			<version>${ecommerce.facade.latest.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>

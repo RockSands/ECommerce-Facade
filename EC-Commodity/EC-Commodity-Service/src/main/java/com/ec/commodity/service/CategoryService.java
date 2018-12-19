@@ -1,0 +1,16 @@
+package com.ec.commodity.service;
+
+import java.util.List;
+
+import com.ec.commodity.pojo.Category;
+
+/**
+ * @author CKW
+ * @date 2018/9/15
+ */
+public interface CategoryService {
+
+
+    List<Category> queryCategoryByPid(Long pid);
+
+}
