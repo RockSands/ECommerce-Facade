@@ -11,7 +11,7 @@ import lombok.Getter;
  *
  */
 @Getter
-public class ECException extends Throwable {
+public class ECException extends RuntimeException {
 	/**
 	 * 
 	 */
