@@ -9,8 +9,11 @@ eureka:
       defaultZone: http://127.0.0.1:10086/eureka
     registry-fetch-interval-seconds: 5 # 每5秒
 zuul:
-  prefix: /api # 添加路由前缀
-  retryable: true
+  prefix: /api
+  routes:
+    commodity-service: /item/**
+  sensitive-headers:
+  add-host-header: true
 ribbon: # 负载均衡
   ConnectTimeout: 1000 # 连接超时时间(ms)
   ReadTimeout: 3000 # 通信超时时间(ms)

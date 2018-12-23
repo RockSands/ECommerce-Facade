@@ -9,8 +9,8 @@ eureka:
     ip-address: 127.0.0.1
 spring:
   application:
-    name: EC-commodity-service
+    name: commodity-service
   datasource:
-    url: jdbc:mysql://localhost:3306/heima
+    url: jdbc:mysql://192.168.80.138:3306/commodity
     username: root
-    password: 123
+    password: 123456

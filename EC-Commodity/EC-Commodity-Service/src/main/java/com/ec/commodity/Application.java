@@ -9,7 +9,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("com.ec.commodity.service")
+@MapperScan("com.ec.commodity.mapper")
 public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
