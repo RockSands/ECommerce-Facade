@@ -12,6 +12,10 @@ zuul:
   prefix: /api
   routes:
     commodity-service: /item/**
+    # upload为图片,静态文件上传需要缓存zuul,这样浪费资源
+    # 因而一般的配置nginx,将image.ecommerce.com/upload上
+    # 由于nginx已经配置upload路径,因而完整的路径是image.ecommerce.com/upload/upload才能被zuul识别并跳转至upload-service
+    # 如按照上面配置,则路径会变为image.ecommerce.com/upload/**  因而如下方缩写,且strip-prefix=false
     upload-service:
       path: /upload/**
       serviceId: upload-service
