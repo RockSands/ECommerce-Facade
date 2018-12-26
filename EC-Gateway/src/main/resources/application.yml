@@ -12,6 +12,10 @@ zuul:
   prefix: /api
   routes:
     commodity-service: /item/**
+    upload-service:
+      path: /upload/**
+      serviceId: upload-service
+      strip-prefix: false
   sensitive-headers:
   add-host-header: true
 ribbon: # 负载均衡
