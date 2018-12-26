@@ -90,5 +90,6 @@
 		<module>EC-Gateway</module>
 		<module>EC-Commodity</module>
 		<module>EC-Common</module>
+		<module>EC-Upload</module>
 	</modules>
 </project>
