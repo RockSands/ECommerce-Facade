@@ -15,6 +15,7 @@ import com.ec.commodity.service.BrandService;
 import com.ec.commodity.service.CategoryService;
 
 /**
+ * Category: 商品的分类
  * @author CKW
  * @date 2018/9/15
  */

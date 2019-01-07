@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * 对SPU的一对一，对SPU的纵向切分。 将大字段分离，优化开销
  * @author bystander
  * @date 2018/9/18
  */

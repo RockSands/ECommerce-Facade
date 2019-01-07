@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * VO的目的, 隔离Pojo并面向业务
  * @author bystander
  * @date 2018/9/17
  */

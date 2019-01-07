@@ -9,6 +9,7 @@ import javax.persistence.Transient;
 import java.util.Date;
 
 /**
+ * SKU,商品库存,表示一个产品用户选择了具体的型号、颜色、参数等等
  * @author bystander
  * @date 2018/9/18
  */

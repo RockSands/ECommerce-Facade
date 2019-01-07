@@ -1,13 +1,14 @@
 package com.ec.commodity.pojo;
 
-import lombok.Data;
-import tk.mybatis.mapper.annotation.KeySql;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+import tk.mybatis.mapper.annotation.KeySql;
+
 /**
+ * 商品参数
  * @author bystander
  * @date 2018/9/18
  */

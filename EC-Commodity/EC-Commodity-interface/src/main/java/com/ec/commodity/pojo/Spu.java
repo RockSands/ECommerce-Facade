@@ -1,16 +1,19 @@
 package com.ec.commodity.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import tk.mybatis.mapper.annotation.KeySql;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import java.util.Date;
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+import tk.mybatis.mapper.annotation.KeySql;
 
 /**
+ * 商品集,可以理解一个商品详情页面,里面提供型号、颜色等可供客户选择
  * @author bystander
  * @date 2018/9/18
  */
