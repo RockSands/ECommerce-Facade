@@ -16,6 +16,7 @@
 			<artifactId>mapper-core</artifactId>
 			<version>1.0.4</version>
 		</dependency>
+		<!-- 写死 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
