@@ -126,7 +126,4 @@ public class BrandController {
         return ResponseEntity.ok(brandService.queryBrandByIds(ids));
     }
 
-
-
-
 }
