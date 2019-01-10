@@ -91,5 +91,6 @@
 		<module>EC-Commodity</module>
 		<module>EC-Common</module>
 		<module>EC-Upload</module>
+		<module>ECommerce-search</module>
 	</modules>
 </project>
