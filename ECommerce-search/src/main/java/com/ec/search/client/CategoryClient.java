@@ -8,6 +8,6 @@ import com.ec.commodity.api.CategoryApi;
  * @author bystander
  * @date 2018/9/22
  */
-@FeignClient("item-service")
+@FeignClient("commodity-service")
 public interface CategoryClient extends CategoryApi {
 }

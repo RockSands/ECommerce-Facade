@@ -8,6 +8,6 @@ import com.ec.commodity.api.GoodsApi;
  * @author bystander
  * @date 2018/9/22
  */
-@FeignClient(value = "item-service")
+@FeignClient(value = "commodity-service")
 public interface GoodsClient extends GoodsApi {
 }
