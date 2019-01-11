@@ -15,6 +15,13 @@ public class PageResult<T> {
     private Long total;
     private Integer totalPage;
     private List<T> items;
+    
+    /**
+     * feign需要
+     */
+    public PageResult() {
+    	
+    }
 
     public PageResult(Long total, List<T> items) {
         this.total = total;
@@ -26,6 +33,4 @@ public class PageResult<T> {
         this.totalPage = totalPage;
         this.items = items;
     }
-
-
 }

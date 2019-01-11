@@ -39,7 +39,9 @@ public class EsTest {
 
     @Test
     public void testCreateIndex() {
+    	// 创建索引
         template.createIndex(Goods.class);
+        // 创建列
         template.putMapping(Goods.class);
     }
 
@@ -49,7 +51,10 @@ public class EsTest {
         int size = 0;
         int rows = 100;
         do {
-            PageResult<Spu> result = goodsClient.querySpuByPage(page, rows, true, null);
+            PageResult<Spu> result = goodsClient.querySpuByPage(page, rows, null, true);
+            if(page > result.getTotal()) {
+            	break;
+            }
             ArrayList<Goods> goodList = new ArrayList<>();
             List<Spu> spus = result.getItems();
             size = spus.size();
@@ -64,6 +69,7 @@ public class EsTest {
             }
             this.repository.saveAll(goodList);
             page++;
+            System.out.println("===已保存数据===>");
         } while (size == 100);
     }
 }

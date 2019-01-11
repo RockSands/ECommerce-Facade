@@ -39,7 +39,8 @@ public class GoodsController {
             @RequestParam(value = "key",required = false)String key,
             @RequestParam(value = "saleable", required = false)Boolean saleable
     ) {
-        return ResponseEntity.ok(goodsService.querySpuByPage(page,rows,key,saleable));
+    	PageResult<Spu> result = goodsService.querySpuByPage(page,rows,key,saleable);
+        return ResponseEntity.ok(result);
     }
 
     /**
