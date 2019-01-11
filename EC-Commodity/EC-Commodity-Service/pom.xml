@@ -24,19 +24,16 @@
 		<dependency>
 			<groupId>tk.mybatis</groupId>
 			<artifactId>mapper-spring-boot-starter</artifactId>
-			<version>${mapper.starter.version}</version>
 		</dependency>
 		<!-- 分页助手启动器 -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>${pageHelper.starter.version}</version>
 		</dependency>
 		<!-- mysql驱动 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>ecommerce.facade.commodity.interface</groupId>
