@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ec.commodity.pojo.Brand;
 
 /**
+ * 与Service一致, 目的为其他项目引用,实现服务调用
  * @author bystander
  * @date 2018/9/22
  */

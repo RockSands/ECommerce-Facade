@@ -147,5 +147,4 @@ public class SpecController {
         return ResponseEntity.ok(specService.querySpecsByCid(cid));
     }
 
-
 }
