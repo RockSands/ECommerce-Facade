@@ -625,6 +625,7 @@
 <script src="/js/common.js"></script>
 
 <script th:inline="javascript">
+	// 通过注释,将Model中的值赋值给JS部分
     const specialSpec = JSON.parse(/*[[${detail.specialSpec}]]*/ "");
     const genericSpec = JSON.parse(/*[[${detail.genericSpec}]]*/ "");
     const skus = /*[[${skus}]]*/ [];
