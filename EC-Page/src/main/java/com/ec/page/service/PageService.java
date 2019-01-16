@@ -51,7 +51,7 @@ public class PageService {
     @Autowired
     private TemplateEngine templateEngine;
 
-    @Value("${ly.page.path}")
+    @Value("${ec.page.path}")
     private String dest;
 
     public Map<String, Object> loadModel(Long spuId) {

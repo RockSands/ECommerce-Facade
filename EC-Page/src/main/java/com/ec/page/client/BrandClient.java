@@ -8,6 +8,6 @@ import com.ec.commodity.api.BrandApi;
  * @author bystander
  * @date 2018/9/22
  */
-@FeignClient("item-service")
+@FeignClient("commodity-service")
 public interface BrandClient extends BrandApi {
 }

@@ -20,10 +20,10 @@ public class SpuDetail {
     //商品描述
     private String description;
 
-    //通用规格参数数据
+    //通用规格参数数据,所有的参数Json格式
     private String genericSpec;
 
-    //特殊规格参数数据
+    //特殊规格参数数据,所有的参数Json格式
     private String specialSpec;
 
     //包装清单

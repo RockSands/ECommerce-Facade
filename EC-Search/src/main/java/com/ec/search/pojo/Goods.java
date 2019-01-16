@@ -17,6 +17,7 @@ import lombok.Data;
  * @date 2018/9/22
  */
 @Data
+// 直接定义EL的索引和分区、备份
 @Document(indexName = "goods", type = "docs", shards = 1, replicas = 1)
 public class Goods {
 

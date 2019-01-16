@@ -70,6 +70,9 @@ public class SearchService {
     @Autowired
     private CategoryClient categoryClient;
 
+    /**
+     * EL操作对象
+     */
     @Autowired
     private ElasticsearchTemplate template;
 
