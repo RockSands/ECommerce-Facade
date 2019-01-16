@@ -205,7 +205,7 @@ public class SearchService {
         return result;
     }
 
-    public SearchResult<Goods> search(SearchRequest searchRequest) {
+    public SearchResult search(SearchRequest searchRequest) {
 
         String key = searchRequest.getKey();
         if (StringUtils.isBlank(key)) {
