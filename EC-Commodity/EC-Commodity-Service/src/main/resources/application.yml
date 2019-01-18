@@ -10,6 +10,19 @@ eureka:
 spring:
   application:
     name: commodity-service
+  rabbitmq:
+    host: 192.168.80.160
+    username: ecommerce
+    password: ecommerce
+    virtual-host: /ecommerce
+    template: # 模板
+      retry:  # 重试机制
+        enabled: true
+        initial-interval: 10000ms
+        max-interval: 30000ms
+        multiplier: 2
+      exchange: ecommerce.commodity.exchange
+    publisher-confirms: true
   datasource:
     url: jdbc:mysql://192.168.80.138:3306/ecommerce
     username: root

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,8 +62,8 @@ public class GoodsServiceImpl implements GoodsService {
 	@Autowired
 	private StockMapper stockMapper;
 
-	// @Autowired
-	// private AmqpTemplate amqpTemplate;
+	 @Autowired
+	 private AmqpTemplate amqpTemplate;
 
 	@Override
 	public PageResult<Spu> querySpuByPage(Integer page, Integer rows, String key, Boolean saleable) {
@@ -327,14 +328,15 @@ public class GoodsServiceImpl implements GoodsService {
 	 * 封装发送到消息队列的方法
 	 *
 	 * @param id
-	 * @param type
+	 * @param key: 即routingKey
 	 */
-	private void sendMessage(Long id, String type) {
+	private void sendMessage(Long id, String key) {
 		try {
-			// amqpTemplate.convertAndSend("item." + type, id);
-			log.info("{}商品消息发送异常，商品ID：{}", type, id);
+			// 生产一个消息
+			log.info("商品{}消息发送，商品ID：{}", key, id);
+			amqpTemplate.convertAndSend("item." + key, id);
 		} catch (Exception e) {
-			log.error("{}商品消息发送异常，商品ID：{}", type, id, e);
+			log.error("商品{}消息发送异常，商品ID：{}", key, id, e);
 		}
 	}
 
