@@ -92,5 +92,6 @@
 		<module>EC-Upload</module>
 		<module>EC-Search</module>
 		<module>EC-Page</module>
+		<module>EC-Sms</module>
 	</modules>
 </project>

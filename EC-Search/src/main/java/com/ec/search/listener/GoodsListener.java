@@ -30,7 +30,7 @@ public class GoodsListener {
 
 	}
 
-	@RabbitListener(bindings = @QueueBinding(value = @Queue(name = "ecommerce.search.insert.queue", durable = "true"), exchange = @Exchange(name = "ly.item.exchange", type = ExchangeTypes.TOPIC, ignoreDeclarationExceptions = "true"), key = "item.delete"))
+	@RabbitListener(bindings = @QueueBinding(value = @Queue(name = "ecommerce.search.delete.queue", durable = "true"), exchange = @Exchange(name = "ecommerce.commodity.exchange", type = ExchangeTypes.TOPIC, ignoreDeclarationExceptions = "true"), key = "item.delete"))
 	public void listenDelete(Long id) {
 		// 监听删除
 		if (id != null) {
