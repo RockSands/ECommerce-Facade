@@ -1,4 +1,4 @@
-package com.ec.auth.service;
+package com.ec.auth.test.properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

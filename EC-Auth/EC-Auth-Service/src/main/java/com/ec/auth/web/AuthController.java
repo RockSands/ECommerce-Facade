@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ec.auth.entity.UserInfo;
 import com.ec.auth.properties.JwtProperties;
-import com.ec.auth.service.AuthService;
+import com.ec.auth.test.properties.AuthService;
 import com.ec.auth.utils.JwtUtils;
 import com.ec.common.enums.ExceptionEnum;
 import com.ec.common.exception.ECException;

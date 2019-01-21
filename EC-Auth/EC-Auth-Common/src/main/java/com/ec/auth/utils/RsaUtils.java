@@ -13,6 +13,8 @@ import java.security.SecureRandom;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
+import org.springframework.util.ResourceUtils;
+
 /**
  * @author bystander
  * @date 2018/9/30
@@ -115,7 +117,7 @@ public class RsaUtils {
 	 * @throws IOException
 	 */
 	public static void writeFile(String destPath, byte[] bytes) throws IOException {
-		File dest = new File(destPath);
+		File dest = new File(ResourceUtils.getURL(destPath).getPath());
 		if (!dest.exists()) {
 			dest.createNewFile();
 		}
