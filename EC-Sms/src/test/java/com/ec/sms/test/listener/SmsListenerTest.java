@@ -29,7 +29,9 @@ public class SmsListenerTest {
         map.put("phone", "15121037897");
         map.put("code", "ILoveYou");
         amqpTemplate.convertAndSend("ly.sms.exchange", "sms.verify.code", map);
-
+        /*
+         * 避免直接关闭
+         */
         Thread.sleep(5000);
     }
 }

@@ -41,11 +41,8 @@ public class SmsUtil {
     static final String domain = "dysmsapi.aliyuncs.com";
 
     public SendSmsResponse sendSms(String signature, String templateCode, String phone, Map<String,Object> params) {
-
         try {
-
             String key = SMS_PREFIX + phone;
-
             String lastTime = template.opsForValue().get(key);
             if (StringUtils.isNotBlank(lastTime)) {
                 //Redis中键不为空

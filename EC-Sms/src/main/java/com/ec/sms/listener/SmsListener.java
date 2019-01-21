@@ -33,8 +33,8 @@ public class SmsListener {
     private SmsUtil smsUtil;
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(name = "ec.sms.verify.queue"),
-            exchange = @Exchange(name = "ec.sms.exchange", type = ExchangeTypes.TOPIC),
+            value = @Queue(name = "ecommerce.sms.verify.queue"),
+            exchange = @Exchange(name = "ecommerce.sms.exchange", type = ExchangeTypes.TOPIC),
             key = "sms.verify.code"
     ))
     public void listenVerifyCode(Map<String, Object> msg) {
