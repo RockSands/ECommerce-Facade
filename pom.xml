@@ -94,5 +94,6 @@
 		<module>EC-Page</module>
 		<module>EC-Sms</module>
 		<module>EC-Auth</module>
+		<module>EC-User</module>
 	</modules>
 </project>
