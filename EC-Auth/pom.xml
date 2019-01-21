@@ -12,7 +12,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>EC-Auth-Interface</module>
+		<module>EC-Auth-Common</module>
 		<module>EC-Auth-Service</module>
 	</modules>
 </project>
