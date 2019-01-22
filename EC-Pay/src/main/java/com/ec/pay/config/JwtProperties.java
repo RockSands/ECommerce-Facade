@@ -5,6 +5,7 @@ import java.security.PublicKey;
 import javax.annotation.PostConstruct;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.util.ResourceUtils;
 
 import com.ec.auth.utils.RsaUtils;
 
@@ -17,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Data
 @Slf4j
-@ConfigurationProperties(prefix = "ly.jwt")
+@ConfigurationProperties(prefix = "ec.jwt")
 public class JwtProperties {
 
     private String pubKeyPath;
@@ -29,7 +30,8 @@ public class JwtProperties {
     @PostConstruct
     public void init() {
         try {
-            publicKey = RsaUtils.getPublicKey(pubKeyPath);
+        	String pubKeyFullPath = ResourceUtils.getURL(pubKeyPath).getPath();
+            publicKey = RsaUtils.getPublicKey(pubKeyFullPath);
         } catch (Exception e) {
             log.error("初始化公钥失败", e);
             throw new RuntimeException();

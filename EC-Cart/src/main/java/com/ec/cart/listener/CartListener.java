@@ -26,8 +26,8 @@ public class CartListener {
 
     @SuppressWarnings("unchecked")
 	@RabbitListener(bindings = @QueueBinding(
-            value = @Queue(name = "ly.cart.delete.queue", durable = "true"),
-            exchange = @Exchange(name = "ly.cart.exchange",
+            value = @Queue(name = "ec.cart.delete.queue", durable = "true"),
+            exchange = @Exchange(name = "ec.cart.exchange",
                     type = ExchangeTypes.TOPIC,
                     ignoreDeclarationExceptions = "true"),
             key = {"cart.delete"}
