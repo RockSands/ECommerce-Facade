@@ -24,6 +24,7 @@ zuul:
       path: /upload/**
       serviceId: upload-service
       strip-prefix: false
+  # 使得Cookie的Host生效,使得手动修改Cookie不会跨域
   sensitive-headers:
   add-host-header: true
 ribbon: # 负载均衡
@@ -39,3 +40,15 @@ hystrix:
         isolation:
           thread:
             timeoutInMillisecond: 50000 # 熔断超时时长：50000ms
+ec:
+  jwt:
+    pubKeyPath: classpath:RSA/id_rsa.pub # 公钥地址
+    cookieName: EC_TOKEN # cookie的名称
+  filter:
+    allowPaths:
+    - /api/auth
+    - /api/search
+    - /api/user/register
+    - /api/user/check
+    - /api/user/code
+    - /api/item

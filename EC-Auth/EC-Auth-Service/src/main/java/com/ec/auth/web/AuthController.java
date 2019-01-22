@@ -59,6 +59,9 @@ public class AuthController {
             throw new ECException(ExceptionEnum.USERNAME_OR_PASSWORD_ERROR);
         }
         //将Token写入cookie中
+        // 由于使用Nginx代理, 所以Nginx的传递的Host可能中途变化,从而导致domain(域)变更
+        // Cookie无法跨域,因而cookie设置失败
+        // 需要在Nginx上设置 proxy_set_header Host $host  透传Host,保证域名不变
         CookieUtils.newBuilder(response).httpOnly().maxAge(props.getCookieMaxAge()).request(request).build(props.getCookieName(), token);
         return ResponseEntity.ok().build();
     }

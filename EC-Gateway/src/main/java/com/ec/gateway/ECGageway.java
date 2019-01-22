@@ -8,8 +8,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableZuulProxy
 @EnableDiscoveryClient
 @SpringCloudApplication
-public class EC_Gageway {
+public class ECGageway {
 	public static void main(String[] args) {
-		SpringApplication.run(EC_Gageway.class, args);
+		SpringApplication.run(ECGageway.class, args);
 	}
 }
