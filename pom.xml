@@ -95,5 +95,7 @@
 		<module>EC-Sms</module>
 		<module>EC-Auth</module>
 		<module>EC-User</module>
+		<module>EC-Cart</module>
+		<module>EC-Pay</module>
 	</modules>
 </project>

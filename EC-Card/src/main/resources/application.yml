@@ -1,0 +1,23 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: cart-service
+  redis:
+    host: 192.168.80.160
+  rabbitmq:
+    virtual-host: /ecommerce
+    username: ecommerce
+    password: ecommerce
+    host: 192.168.80.160
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  # instance:
+    # prefer-ip-address: true
+    # ip-address: 127.0.0.1
+ec:
+  jwt:
+    pubKeyPath: classpath:RSA/id_rsa.pub # 公钥地址
+    cookieName: EC_TOKEN # cookie的名称
