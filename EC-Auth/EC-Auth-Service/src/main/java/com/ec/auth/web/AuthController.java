@@ -73,7 +73,8 @@ public class AuthController {
      * @return
      */
     @GetMapping("verify")
-    public ResponseEntity<UserInfo> verifyUser(@CookieValue("LY_TOKEN") String token, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<UserInfo> verifyUser(@CookieValue("EC"
+    		+ "_TOKEN") String token, HttpServletRequest request, HttpServletResponse response) {
         try {
             //从Token中获取用户信息
             UserInfo userInfo = JwtUtils.getUserInfo(props.getPublicKey(), token);
@@ -96,7 +97,7 @@ public class AuthController {
      * @return
      */
     @GetMapping("logout")
-    public ResponseEntity<Void> logout(@CookieValue("LY_TOKEN") String token, HttpServletResponse response) {
+    public ResponseEntity<Void> logout(@CookieValue("EC_TOKEN") String token, HttpServletResponse response) {
         if (StringUtils.isNotBlank(token)) {
             CookieUtils.newBuilder(response).maxAge(0).build(props.getCookieName(), token);
         }
