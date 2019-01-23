@@ -12,7 +12,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan(value = "com.leyou.user.mapper")
+@MapperScan(value = "com.ec.user.mapper")
 public class ECUserApplication {
 
     public static void main(String[] args) {
