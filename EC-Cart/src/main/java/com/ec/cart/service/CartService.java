@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CartService {
 
-    private static final String KEY_PREFIX = "ly:cart:uid:";
+    private static final String KEY_PREFIX = "ec:cart:uid:";
     @Autowired
     private StringRedisTemplate redisTemplate;
 

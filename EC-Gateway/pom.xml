@@ -14,17 +14,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.cloud</groupId>
-					<artifactId>spring-cloud-netflix-zuul</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-netflix-zuul</artifactId>
-			<version>2.0.0.RELEASE</version>
 		</dependency>
 		<!--是springboot提供的微服务检测接口，默认对外提供几个接口：/info -->
 		<dependency>
