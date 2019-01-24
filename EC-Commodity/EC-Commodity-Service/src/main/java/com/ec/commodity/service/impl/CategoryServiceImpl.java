@@ -52,4 +52,9 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return list;
     }
+
+	@Override
+	public List<Category> queryAllCategory() {
+		return categoryMapper.selectAll();
+	}
 }

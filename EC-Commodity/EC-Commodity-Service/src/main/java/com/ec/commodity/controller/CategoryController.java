@@ -42,6 +42,20 @@ public class CategoryController {
 		// 简化写法,值得推荐
 		return ResponseEntity.ok(categoryList);
 	}
+	
+	/**
+	 * 根据父类ID查询分类结果
+	 * 
+	 * @param pid
+	 * @return
+	 */
+	@GetMapping("all")
+	public ResponseEntity<List<Category>> queryAllCategory() {
+		List<Category> categoryList = categoryService.queryAllCategory();
+		// 简化写法,值得推荐
+		return ResponseEntity.ok(categoryList);
+	}
+
 
 	/**
 	 * 根据品牌ID查询商品分类
