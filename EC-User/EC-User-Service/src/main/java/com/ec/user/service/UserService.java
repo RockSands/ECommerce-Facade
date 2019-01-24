@@ -67,7 +67,7 @@ public class UserService {
         Map<String,String> map = new HashMap<>();
         map.put("phone", phone);
         map.put("code", code);
-        amqpTemplate.convertAndSend("ly.sms.exchange", "sms.verify.code", map);
+        amqpTemplate.convertAndSend("ec.sms.exchange", "sms.verify.code", map);
     }
 
     public void register(User user, String code) {

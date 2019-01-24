@@ -166,7 +166,7 @@ public class OrderService {
         try {
             map.put("skuIds", skuNumMap.keySet());
             map.put("userId", user.getId());
-            amqpTemplate.convertAndSend("ly.cart.exchange", "cart.delete", JsonUtils.toString(map));
+            amqpTemplate.convertAndSend("ec.cart.exchange", "cart.delete", JsonUtils.toString(map));
         } catch (Exception e) {
             log.error("删除购物车消息发送异常，商品ID：{}", skuNumMap.keySet(), e);
         }

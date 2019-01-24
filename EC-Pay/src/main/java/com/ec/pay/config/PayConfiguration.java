@@ -19,7 +19,7 @@ public class PayConfiguration {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "ly.pay")
+    @ConfigurationProperties(prefix = "ec.pay")
     public PayConfig payConfig() {
         return new PayConfig();
     }
