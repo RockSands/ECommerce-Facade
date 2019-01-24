@@ -88,7 +88,5 @@ public class LoginFilter extends ZuulFilter {
             }
         }
         return flag;
-
-
     }
 }
