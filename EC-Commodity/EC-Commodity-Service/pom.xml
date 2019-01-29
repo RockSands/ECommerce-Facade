@@ -30,6 +30,12 @@
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 		</dependency>
+		<!-- 分布式事物 -->
+		<dependency>
+			<groupId>com.codingapi.txlcn</groupId>
+			<artifactId>tx-client-springcloud</artifactId>
+			<version>5.0.0.RC2</version>
+		</dependency>
 		<!-- mysql驱动 -->
 		<dependency>
 			<groupId>mysql</groupId>

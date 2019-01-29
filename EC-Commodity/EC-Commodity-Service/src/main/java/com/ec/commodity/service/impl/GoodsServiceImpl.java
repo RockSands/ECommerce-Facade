@@ -62,8 +62,8 @@ public class GoodsServiceImpl implements GoodsService {
 	@Autowired
 	private StockMapper stockMapper;
 
-	 @Autowired
-	 private AmqpTemplate amqpTemplate;
+	@Autowired
+	private AmqpTemplate amqpTemplate;
 
 	@Override
 	public PageResult<Spu> querySpuByPage(Integer page, Integer rows, String key, Boolean saleable) {
@@ -328,7 +328,8 @@ public class GoodsServiceImpl implements GoodsService {
 	 * 封装发送到消息队列的方法
 	 *
 	 * @param id
-	 * @param key: 即routingKey
+	 * @param key:
+	 *            即routingKey
 	 */
 	private void sendMessage(Long id, String key) {
 		try {
