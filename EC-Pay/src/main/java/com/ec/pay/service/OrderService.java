@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import com.codingapi.txlcn.commons.annotation.LcnTransaction;
 import com.ec.auth.entity.UserInfo;
 import com.ec.commodity.dto.CartDto;
 import com.ec.commodity.pojo.Sku;

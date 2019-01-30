@@ -4,9 +4,9 @@ spring:
   application:
     name: pay-service
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/leyou?characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.80.138:3306/ecommerce
     username: root
-    password: root
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   jackson:
     default-property-inclusion: NON_NULL
@@ -23,7 +23,7 @@ spring:
         initial-interval: 10000ms
         max-interval: 30000ms
         multiplier: 2
-      exchange: ec.item.exchange
+      exchange: ecommerce.commodity.exchange
     publisher-confirms: true
 eureka:
   client:
@@ -33,7 +33,7 @@ eureka:
   #  prefer-ip-address: true
   #  ip-address: 127.0.0.1
 mybatis:
-  type-aliases-package: com.ecommerce.pay.pojo
+  type-aliases-package: com.ec.pay.pojo
 ec:
   jwt:
     pubKeyPath: classpath:RSA/id_rsa.pub # 公钥地址
