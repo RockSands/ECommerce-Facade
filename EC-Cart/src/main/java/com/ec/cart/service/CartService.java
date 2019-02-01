@@ -15,14 +15,11 @@ import com.ec.cart.filter.LoginInterceptor;
 import com.ec.cart.pojo.Cart;
 import com.ec.common.utils.JsonUtils;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author bystander
  * @date 2018/10/3
  */
 @Service
-@Slf4j
 public class CartService {
 
     private static final String KEY_PREFIX = "ec:cart:uid:";
@@ -109,4 +106,22 @@ public class CartService {
             hashOps.delete(id.toString());
         }
     }
+
+	public Integer countCart() {
+        //获取登录用户
+        UserInfo loginUser = LoginInterceptor.getLoginUser();
+        //获取该用户Redis中的key
+        String key = KEY_PREFIX + loginUser.getId();
+        if (!redisTemplate.hasKey(key)) {
+            //Redis中没有给用户信息
+            return 0;
+        }
+        BoundHashOperations<String, Object, Object> hashOps = redisTemplate.boundHashOps(key);
+        List<Object> carts = hashOps.values();
+        if (CollectionUtils.isEmpty(carts)) {
+            //购物车中无数据
+            return 0;
+        }
+        return carts.size();
+	}
 }

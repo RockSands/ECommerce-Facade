@@ -76,5 +76,14 @@ public class CartController {
         return ResponseEntity.ok(cartService.listCart());
     }
 
+    /**
+     * 查询购物车
+     *
+     * @return
+     */
+    @GetMapping("count")
+    public ResponseEntity<Integer> countCart() {
+        return ResponseEntity.ok(cartService.countCart());
+    }
 
 }
