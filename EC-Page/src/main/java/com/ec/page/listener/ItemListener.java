@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.ec.page.service.PageService;
 
 /**
+ * 对商品进行监听,一旦商品属性/描述变更,会自动调用PageService构建静态页面
  * @author bystander
  * @date 2018/9/28
  */

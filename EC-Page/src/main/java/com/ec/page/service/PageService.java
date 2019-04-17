@@ -29,6 +29,7 @@ import com.ec.page.client.SpecClient;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * 静态页面的Service
  * @author bystander
  * @date 2018/9/26
  */

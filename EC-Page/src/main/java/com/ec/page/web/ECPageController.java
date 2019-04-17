@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.ec.page.service.PageService;
 
 /**
+ * controller,在静态页面失效时.调用
  * @author bystander
  * @date 2018/9/26
  */
