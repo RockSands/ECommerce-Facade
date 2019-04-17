@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 /**
+ * 错误异常的定义
  * @author CKW
  * @date 2018/9/15
  */

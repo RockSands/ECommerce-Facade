@@ -5,10 +5,9 @@ import com.ec.common.enums.ExceptionEnum;
 import lombok.Data;
 
 /**
+ * 自定义异常结果类
  * @author bystander
  * @date 2018/9/15
- *
- * 自定义异常结果类
  */
 
 @Data

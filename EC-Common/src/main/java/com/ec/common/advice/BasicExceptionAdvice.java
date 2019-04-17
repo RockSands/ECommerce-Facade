@@ -9,7 +9,7 @@ import com.ec.common.vo.ExceptionResult;
 
 /**
  * ControllerAdvice,默认所有的Controller被ControllerAdvice拦截
- * 
+ * 此处主要负责异常情况的拦截,并直接返回错误体
  * @author CKW
  *
  */
