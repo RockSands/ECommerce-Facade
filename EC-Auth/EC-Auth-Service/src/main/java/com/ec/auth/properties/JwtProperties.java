@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * JWT的配置文件,主要是定义加密文件
  * @author bystander
  * @date 2018/10/1
  */

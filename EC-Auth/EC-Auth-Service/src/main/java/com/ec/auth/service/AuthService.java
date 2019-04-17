@@ -1,4 +1,4 @@
-package com.ec.auth.test.properties;
+package com.ec.auth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -15,6 +15,7 @@ import com.ec.user.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * 鉴权的service,生产Token
  * @author bystander
  * @date 2018/10/1
  */
@@ -28,7 +29,6 @@ public class AuthService {
 
     @Autowired
     private JwtProperties props;
-
 
     public String login(String username, String password) {
         try {
