@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 /**
+ * 上传的属性配置
  * @author bystander
  * @date 2018/9/16
  */

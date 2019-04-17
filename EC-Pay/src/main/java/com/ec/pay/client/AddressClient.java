@@ -5,6 +5,11 @@ import java.util.List;
 
 import com.ec.pay.dto.AddressDTO;
 
+/**
+ * 地址的测试类
+ * @author Administrator
+ *
+ */
 public abstract class AddressClient {
     public static final List<AddressDTO> addressList = new ArrayList<AddressDTO>(){
         {
