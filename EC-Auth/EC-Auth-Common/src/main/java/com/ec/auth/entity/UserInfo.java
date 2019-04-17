@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * 鉴权对象类
  * @author bystander
  * @date 2018/9/30
  */

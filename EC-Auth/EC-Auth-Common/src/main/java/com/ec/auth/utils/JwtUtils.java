@@ -14,6 +14,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 /**
+ * JWT的工具类,主要生产Token
  * @author bystander
  * @date 2018/10/1
  */

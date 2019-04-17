@@ -16,6 +16,8 @@ import java.security.spec.X509EncodedKeySpec;
 import org.springframework.util.ResourceUtils;
 
 /**
+ * RSA是加密协议
+ * 该类主要负责加密,解密
  * @author bystander
  * @date 2018/9/30
  */

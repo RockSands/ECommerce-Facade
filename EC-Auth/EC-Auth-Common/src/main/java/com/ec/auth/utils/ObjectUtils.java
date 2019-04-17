@@ -2,6 +2,11 @@ package com.ec.auth.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * 对象的工具类,主要是转换
+ * @author Administrator
+ *
+ */
 public class ObjectUtils {
 
     public static String toString(Object obj) {
