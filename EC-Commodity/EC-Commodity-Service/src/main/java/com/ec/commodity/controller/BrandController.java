@@ -21,6 +21,7 @@ import com.ec.common.vo.PageResult;
 
 
 /**
+ * 与BrandAPI一直的路径,则外界调用API时直接有改Controller处理
  * @author bystander
  * @date 2018/9/15
  */
