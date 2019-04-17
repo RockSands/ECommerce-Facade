@@ -16,6 +16,7 @@ import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * 鉴权拦截器
  * @author bystander
  * @date 2018/10/2
  */
