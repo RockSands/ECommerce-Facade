@@ -17,6 +17,7 @@ import com.ec.cart.pojo.Cart;
 import com.ec.cart.service.CartService;
 
 /**
+ * 购物车的Controller
  * @author bystander
  * @date 2018/10/3
  */

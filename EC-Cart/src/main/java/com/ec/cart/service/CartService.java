@@ -16,6 +16,8 @@ import com.ec.cart.pojo.Cart;
 import com.ec.common.utils.JsonUtils;
 
 /**
+ * 购物车Service
+ * 主要操作的是Redis
  * @author bystander
  * @date 2018/10/3
  */

@@ -3,6 +3,7 @@ package com.ec.cart.pojo;
 import lombok.Data;
 
 /**
+ * 购物车的物品
  * @author bystander
  * @date 2018/10/3
  */

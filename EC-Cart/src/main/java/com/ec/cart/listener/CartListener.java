@@ -15,6 +15,8 @@ import com.ec.cart.service.CartService;
 import com.ec.common.utils.JsonUtils;
 
 /**
+ * 购物车监听器,监听对象为删除购物车商品
+ * 监听到动作后调用CartService,去Redis删除购物车
  * @author bystander
  * @date 2018/10/7
  */

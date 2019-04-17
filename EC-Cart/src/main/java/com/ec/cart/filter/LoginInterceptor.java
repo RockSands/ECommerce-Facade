@@ -15,6 +15,8 @@ import com.ec.cart.config.JwtProperties;
 import com.ec.common.utils.CookieUtils;
 
 /**
+ * 登陆拦截器,存在ThreadLocal用户保存登陆用户
+ * 其他类可以使用该ThreadLocal获取用户信息
  * @author bystander
  * @date 2018/10/3
  */

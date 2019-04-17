@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.ec.cart.filter.LoginInterceptor;
 
 /**
+ * MVC的配置类,此处增加了鉴权拦截器
  * @author bystander
  * @date 2018/10/3
  */

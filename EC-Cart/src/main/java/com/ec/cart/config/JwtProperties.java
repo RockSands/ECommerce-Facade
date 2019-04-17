@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * 鉴权的配置文件
  * @author bystander
  * @date 2018/10/3
  */
