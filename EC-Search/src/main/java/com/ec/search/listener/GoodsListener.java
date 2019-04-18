@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.ec.search.service.SearchService;
 
 /**
+ * 监听MQ,当商品变更时,直接构建新的商品并刷至ES
  * @author bystander
  * @date 2018/9/28
  */
