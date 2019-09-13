@@ -1,0 +1,87 @@
+按照JDK
+rpm -ivh jdk-8u121-linux-x64.rpm 
+
+# 编辑环境变量
+vi /etc/profile
+
+JAVA_HOME=/usr/java/jdk1.8.0_121
+CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME CLASS_PATH PATH
+
+下载elasticsearch与kibana
+elasticsearch-6.2.4.tar.gz 
+kibana-6.2.4-linux-x86_64.tar.gz
+
+解压elasticsearch
+mkdir -p /elasticsearch
+tar -zxvf elasticsearch-6.2.4.tar.gz -C /elasticsearch
+cd /elasticsearch/elasticsearch-6.2.4/
+
+修改jvm虚拟机配置文件
+vi /elasticsearch/elasticsearch-6.2.4/config/jvm.options 
+
+-Xms512m
+-Xmx512m
+
+修改el配置文件
+# 数据存储位置
+path.data: /elasticsearch/data
+# 日志存储位置
+log.data: /elasticsearch/logs
+network.host: 192.168.80.160
+http.port: 9200
+bootstrap.system_call_filter: false
+
+准备目录
+
+mkdir -p /elasticsearch/logs
+mkdir -p /elasticsearch/datas
+
+创建elasticsearch用户(elasticsearch不允许root用户启动)
+useradd elasticsearch
+chown -R elasticsearch:elasticsearch /elasticsearch
+
+设置环境变量
+vi /etc/profile
+
+ELASTICSEARCH_HOME=/elasticsearch/elasticsearch-6.2.4
+JAVA_HOME=/usr/java/jdk1.8.0_121
+CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+PATH=$JAVA_HOME/bin:\$ELASTICSEARCH_HOME/bin:$PATH
+export JAVA_HOME CLASS_PATH PATH
+
+source /etc/profile
+启动问题修正
+问题如下
+ERROR: [3] bootstrap checks failed
+[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
+[2]: max number of threads [3829] for user [elasticsearch] is too low, increase to at least [4096]
+[3]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+
+vi /etc/security/limits.conf
+
+* soft nofile 65536
+* hard nofile 131072
+* soft nproc 4096
+* hard nproc 4096
+
+
+vi /etc/security/limits.d/20-nproc.conf (文件名称可变)
+
+*          soft    nproc     unlimited
+root       soft    nproc     unlimited
+
+
+vi /etc/sysctl.conf 
+
+# 重新加载
+sysctl -p
+
+# 重启
+reboot
+
+下载分词器
+https://github.com/medcl/elasticsearch-analysis-ik
+cd /elasticsearch/elasticsearch-6.2.4/plugins/ && mkdir ik-analyzer
+将zip包解压至ik-analyzer目录内

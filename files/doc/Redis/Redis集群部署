@@ -1,0 +1,265 @@
+------------------------------------------------------------------
+Redis一般优化
+------------------------------------------------------------------
+1.Redis的由于RDB和AOF的持久化,因而一个Redis内存设置为10G以内为佳(单位Byte),  如果内存不足10G  则设置为最大内容的3/4最佳(32位系统最大3GB)
+maxmemory 10G
+
+2.Redis的内存淘汰策略maxmemory-policy，
+noeviction：当内存使用达到阈值的时候，所有引起申请内存的命令会报错。
+allkeys-lru：在主键空间中，优先移除最近未使用的key。
+volatile-lru：在设置了过期时间的键空间中，优先移除最近未使用的key。
+allkeys-random：在主键空间中，随机移除某个key。
+volatile-random：在设置了过期时间的键空间中，随机移除某个key。
+volatile-ttl：在设置了过期时间的键空间中，具有更早过期时间的key优先移除。
+
+3.Redis的主从模式,由于RDB,所以不要所有从节点都直接连接Master节点。推荐采用树状结构，分Slave层次，二级slave连接一级slave,一级slave连接Master
+
+------------------------------------------------------------------
+Redis主从-Master
+------------------------------------------------------------------
+# 依赖
+yum install -y gcc gcc-c++ make automake tcl
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+
+
+# 下载
+wget http://download.redis.io/releases/redis-5.0.3.tar.gz
+
+
+# 解压
+tar -xvf redis-5.0.3.tar.gz -C /usr/local/
+
+
+# 安装
+cd /usr/local/
+mv redis-5.0.3 redis
+cd /usr/local/redis
+make && make test && make install
+
+
+# 开机启动(6379是我们希望这个redis实例监听的端口号)
+cp /usr/local/redis/utils/redis_init_script /etc/init.d/redis_6379
+mkdir -p /etc/redis
+mkdir -p /var/redis/6379
+
+
+# 配置自启动脚本
+vi /etc/init.d/redis_6379
+
+REDISPORT=6379  //端口号
+
+# Redis配置文件
+cp /usr/local/redis/redis.conf /etc/redis/6379.conf
+vi /etc/redis/6379.conf
+
+### 样例 ###
+bind <ip> 127.0.0.1
+daemonize	yes      //让redis以daemon进程运行
+pidfile  /var/run/redis_6379.pid 	//设置redis的pid文件位置
+port 6379           //设置redis的监听端口号
+dir /var/redis/6379 //设置持久化文件的存储位置
+
+
+# 启动
+cd /etc/init.d
+chmod 777 redis_6379
+./redis_6379 start
+ps -ef | grep redis
+
+自启动
+chkconfig --add /etc/init.d/redis_6379
+chkconfig redis_6379 on
+
+
+# 配置RDB持久化
+vi /etc/redis/6379.conf
+
+# 增加节点
+save 60 1000
+save 300 10
+save 900 1
+
+
+# 配置AOF
+vi /etc/redis/6379.conf
+appendonly yes    //开启AOF
+appendfsync everysec     //开启刷磁盘策略:每秒
+auto-aof-rewrite-percentage 100     //rewrite AOF文件
+auto-aof-rewrite-min-size 64mb      //rewrite AOF文件
+
+
+------------------------------------------------------------------
+Redis主从-Slave(端口7001)
+------------------------------------------------------------------
+# 依赖
+yum install -y gcc gcc-c++ make automake tcl
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+
+
+# 下载
+wget http://download.redis.io/releases/redis-5.0.3.tar.gz
+
+
+# 解压
+tar -xvf redis-5.0.3.tar.gz -C /usr/local/
+
+
+# 安装
+cd /usr/local/
+mv redis-5.0.3 redis
+cd /usr/local/redis
+make && make test && make install
+
+
+# 开机启动(6379是我们希望这个redis实例监听的端口号)
+cp /usr/local/redis/utils/redis_init_script /etc/init.d/redis_7001
+mkdir -p /etc/redis
+mkdir -p /var/redis/7001
+
+
+# 配置自启动脚本
+vi /etc/init.d/redis_7001
+
+REDISPORT=7001  //端口号
+
+# Redis配置文件
+cp /usr/local/redis/redis.conf /etc/redis/7001.conf
+vi /etc/redis/7001.conf
+
+### 样例 ###
+bind <ip> 127.0.0.1
+slaveof <master_ip> <master_port>
+slave-read-only yes    //读写分离
+port 7001           //设置redis的监听端口号
+daemonize	yes      //让redis以daemon进程运行
+pidfile  /var/run/redis_7001.pid 	//设置redis的pid文件位置
+dir /var/redis/7001 //设置持久化文件的存储位置
+
+
+# 启动
+cd /etc/init.d
+chmod 777 redis_7001
+./redis_7001 start
+ps -ef | grep redis
+
+自启动
+chkconfig --add /etc/init.d/redis_7001
+chkconfig redis_7001 on
+
+
+
+------------------------------------------------------------------
+Redis的哨兵集群
+------------------------------------------------------------------
+# 搭建主从,参见上方
+# 准备
+mkdir /etc/sentinal
+mkdir -p /var/sentinal/5000
+cp /usr/local/redis/sentinel.conf /etc/sentinal/5000.conf
+
+
+#编辑配置(一台的样例)
+vi /etc/sentinal/5000.conf
+port 5000
+bind 192.168.80.165
+daemonize yes
+dir /var/sentinal/5000
+sentinel monitor cluster01 192.168.80.165 6379 2
+sentinel down-after-milliseconds cluster01 30000
+sentinel failover-timeout cluster01 60000
+sentinel parallel-syncs cluster01 1
+
+sentinel monitor cluster02 192.168.80.166 6379 2
+sentinel down-after-milliseconds cluster02 30000
+sentinel failover-timeout cluster02 60000
+sentinel parallel-syncs cluster02 1
+
+sentinel monitor cluster03 192.168.80.167 6379 2
+sentinel down-after-milliseconds cluster03 30000
+sentinel failover-timeout cluster03 60000
+sentinel parallel-syncs cluster03 1
+
+
+# 启动
+redis-sentinel /etc/sentinal/5000.conf
+
+redis-cli -h 192.168.80.165 -p 5000
+
+info:下方显示3个集群，1个slaves和3个哨兵
+
+
+
+------------------------------------------------------------------
+Redis的哨兵集群
+------------------------------------------------------------------
+# 搭建主从,参见上方
+
+
+# 准备
+mkdir -p /etc/redis/cluster
+mkdir -p /var/log/redis
+yum -y install ruby ruby-devel rubygems rpm-build
+gem sources --add https://gems.ruby-china.com --remove https://rubygems.org/
+yum install -y curl 
+curl -L get.rvm.io | bash -s stable 
+
+## 下方根据提示输入
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+
+\curl -sSL https://get.rvm.io | bash -s stable
+source  /etc/profile.d/rvm.sh
+rvm install 2.4.1
+gem install redis
+
+
+# 开启集群配置
+Master(6379)节点
+vi /etc/redis/6379.conf
+
+cluster-enabled yes
+cluster-config-file /etc/redis/cluster/nodes-6379.conf
+cluster-node-timeout 15000
+daemonize yes							
+pidfile /var/run/redis_6379.pid 						
+dir /var/redis/6379	
+logfile /var/log/redis/6379.log
+bind 192.168.80.165		
+appendonly yes
+appendfsync everysec
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+
+
+Slave(7001)节点
+vi /etc/redis/7001.conf
+# 删除slave的配置
+slaveof 192.168.80.165 6379
+slave-read-only yes
+# 删除
+
+
+
+cluster-enabled yes
+cluster-config-file /etc/redis/cluster/nodes-7001.conf
+cluster-node-timeout 15000
+daemonize yes							
+pidfile /var/run/redis_7001.pid 						
+dir /var/redis/7001
+logfile /var/log/redis/7001.log
+bind 192.168.80.165		
+appendonly yes
+appendfsync everysec
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+
+
+
+#配置集群
+cp /usr/local/redis/src/redis-trib.rb /usr/local/bin
+
+# 需要所有redis-server启动
+redis-cli --cluster create 192.168.80.165:6379 192.168.80.165:7001 192.168.80.166:6379 192.168.80.166:7001 192.168.80.167:6379 192.168.80.167:7001 --cluster-replicas 1
+
+redis-cli --cluster check 192.168.80.165:7001

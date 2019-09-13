@@ -1,0 +1,26 @@
+RabbitMQ是erlang编程语言实现的，RabbitMQ的特点是文档；而kafka的特点是吞吐量大。
+
+yum -y install epel-release
+yum -y install erlang
+yum -y install rabbitmq-server
+# 启动
+systemctl start rabbitmq-server 
+
+# 配置文件
+vi /etc/rabbitmq/rabbitmq.config
+
+# 启动界面
+rabbitmq-plugins enable rabbitmq_management
+
+# 重启动
+systemctl restart rabbitmq-server
+
+# 开机启动
+systemctl enable rabbitmq-server
+
+# 创建用户
+rabbitmqctl add_user admin admin
+rabbitmqctl set_user_tags admin administrator
+
+# 网址
+http://192.168.80.160:15672/#/users

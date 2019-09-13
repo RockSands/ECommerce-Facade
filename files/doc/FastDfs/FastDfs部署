@@ -1,0 +1,208 @@
+https://blog.csdn.net/qq_34301871/article/details/80060235
+https://www.cnblogs.com/chiangchou/p/fastdfs.html
+
+# 安装依赖
+	yum -y install zlib zlib-devel pcre pcre-devel gcc gcc-c++ openssl openssl-devel libevent libevent-devel perl unzip net-tools wget
+
+
+# 安装依赖libfastcommon
+	wget https://github.com/happyfish100/libfastcommon/archive/V1.0.39.zip
+	mv V1.0.39.zip libfastcommon-1.0.39.zip
+	unzip libfastcommon-1.0.39.zip
+	cd libfastcommon-1.0.39
+	make.sh && make.sh install
+# libfastcommon.so 安装到了/usr/lib64/libfastcommon.so，但是FastDFS主程序设置的lib目录是/usr/local/lib，所以需要创建软链接
+	ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so
+	ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so
+	ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so
+	ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so 
+
+
+# 安装FastDFS
+	wget https://github.com/happyfish100/fastdfs/archive/V5.11.zip
+	mv V5.11.zip fastdfs-5.11.zip
+	unzip fastdfs-5.11.zip
+	cd fastdfs-5.11
+	make.sh && make.sh install
+# 默认安装方式安装后的相应文件与目录
+　　A、服务脚本：
+	/etc/init.d/fdfs_storaged
+	/etc/init.d/fdfs_tracker
+	
+　　B、配置文件（这三个是作者给的样例配置文件） :
+	/etc/fdfs/client.conf.sample
+	/etc/fdfs/storage.conf.sample
+	/etc/fdfs/tracker.conf.sample
+	
+   C、命令工具在 /usr/bin/ 目录下：
+	fdfs_appender_test
+	fdfs_appender_test1
+	fdfs_append_file
+	fdfs_crc32
+	fdfs_delete_file
+	fdfs_download_file
+	fdfs_file_info
+	fdfs_monitor
+	fdfs_storaged
+	fdfs_test
+	fdfs_test1
+	fdfs_trackerd
+	fdfs_upload_appender
+	fdfs_upload_file
+	stop.sh
+	restart.sh 
+
+# 配置命令的软连接
+	ln -s /usr/bin/fdfs_trackerd   /usr/local/bin
+	ln -s /usr/bin/fdfs_storaged   /usr/local/bin
+	ln -s /usr/bin/stop.sh         /usr/local/bin
+	ln -s /usr/bin/restart.sh      /usr/local/bin
+
+# 安装fastdfs的控制器(Tracker)
+	Tracker即管理器,不负责存储数据,仅负责调度
+	cd /etc/fdfs
+	cp tracker.conf.sample tracker.conf
+	vi tracker.conf
+	
+	# 配置文件是否不生效，false 为生效
+	disabled=false
+	# 绑定地址
+    bind_addr=192.168.80.160
+	# 提供服务的端口
+	port=22122
+	# Tracker 数据和日志目录地址(根目录必须存在,子目录会自动创建)
+	base_path=/fastdfs/tracker
+	# HTTP 服务端口
+	http.server_port=80
+	
+	wq!
+	
+# 创建Tracker的基础目录(base_path)
+	mkdir -p /fastdfs/tracker
+	
+# 启动Tracker
+	service fdfs_trackerd start
+	chkconfig fdfs_trackerd on
+
+# tracker server 目录及文件结构 
+
+	Tracker服务启动成功后，会在base_path下创建data、logs两个目录。目录结构如下：
+	
+	${base_path}
+	  |__data
+	  |   |__storage_groups.dat：存储分组信息
+	  |   |__storage_servers.dat：存储服务器列表
+	  |__logs
+	  |   |__trackerd.log： tracker server 日志文件 
+
+# 安装fastdfs的存储器(Storage)
+	cd /etc/fdfs
+	cp storage.conf.sample storage.conf
+	vi storage.conf
+
+	# 配置文件是否不生效，false 为生效
+	disabled=false 
+	# 指定此 storage server 所在 组(卷)
+	group_name=group1
+	# storage server 服务端口
+	port=23000
+	# 心跳间隔时间，单位为秒 (这里是指主动向 tracker server 发送心跳)
+	heart_beat_interval=30
+	# Storage 数据和日志目录地址(根目录必须存在，子目录会自动生成)
+	base_path=/fastdfs/storage
+	# 存放文件时 storage server 支持多个路径。这里配置存放文件的基路径数目，通常只配一个目录。
+	store_path_count=1
+	# 逐一配置 store_path_count 个路径，索引号基于 0。
+	# 如果不配置 store_path0，那它就和 base_path 对应的路径一样。
+	store_path0=/fastdfs/file
+	# FastDFS 存储文件时，采用了两级目录。这里配置存放文件的目录个数。 
+	# 如果本参数只为 N（如： 256），那么 storage server 在初次运行时，会在 store_path 下自动创建 N * N 个存放文件的子目录。
+	subdir_count_per_path=256
+	# tracker_server 的列表 ，会主动连接 tracker_server
+	# 有多个 tracker server 时，每个 tracker server 写一行
+	tracker_server=192.168.80.160:22122
+	# 允许系统同步的时间段 (默认是全天) 。一般用于避免高峰同步产生一些问题而设定。
+	sync_start_time=00:00
+	sync_end_time=23:59
+	# 访问端口
+	http.server_port=80
+	
+	wq!
+	
+# 创建所需路径
+	mkdir -p /fastdfs/storage
+    mkdir -p /fastdfs/file
+    
+# 启动 Storage
+    service fdfs_storaged start
+    chkconfig fdfs_storaged on
+    
+# 查看端口占用
+    netstat -unltp|grep fdfs
+    
+# Storage和Tracker是否在通信,关键字 Active
+    /usr/bin/fdfs_monitor /etc/fdfs/storage.conf
+    
+# 上传图片测试
+    /usr/bin/fdfs_upload_file /etc/fdfs/client.conf <图片文件>
+	返回group1/M00/00/00/wKgz6lnduTeAMdrcAAEoRmXZPp870.jpeg 其中group1位组名,M00为磁盘,00/00位目录,wKgz6lnduTeAMdrcAAEoRmXZPp870.jpeg为文件名
+	
+	
+# 安装Nginx
+	参见相关文档
+	
+# 安装配置Nginx模块
+	wget https://github.com/happyfish100/fastdfs-nginx-module/active/V1.20.zip
+	mv V1.20.zip fastdfs-nginx-module-1.20.zip
+	unzip fastdfs-nginx-module-1.20.zip
+	# 关闭Nginx
+	/usr/local/nginx/sbin/nginx -s stop
+	# 进入Nginx目录
+	cd nginx-1.15.1
+	# 增加Nginx的模块
+	./configure --add-module=/root/fastdfs-nginx-module-1.20/src
+	# 重新安装Nginx
+	make && make install
+	# 查看Nginx的安装模块
+	nginx -V
+	# 复制 fastdfs-nginx-module 源码中的配置文件到/etc/fdfs 目录， 并修改
+	cd fastdfs-nginx-module-1.20/src
+	cp mod_fastdfs.conf /etc/fdfs/
+	vi /etc/fdfs/mod_fastdfs.conf
+	
+	
+	# 连接超时时间
+	connect_timeout=10
+	# Tracker Server
+	tracker_server=192.168.80.160:22122
+	# StorageServer 默认端口
+	storage_server_port=23000
+	# 如果文件ID的uri中包含/group**，则要设置为true
+	url_have_group_name = true
+	# Storage 配置的store_path0路径，必须和storage.conf中的一致
+	store_path0=/fastdfs/file
+	
+	
+	wq!
+	
+	
+	# 复制 FastDFS 的配置文件到/etc/fdfs 目录
+	cd fastdfs-5.11/conf
+	cp anti-steal.jpg http.conf mime.types /etc/fdfs/
+	
+	# 修改Nginx配置
+	vi /usr/local/nginx/conf/nginx.conf
+	
+	参考:
+	location ~/group([0-9])/M00 {
+    	ngx_fastdfs_module;
+	}
+	
+	wq!
+	
+	# 在/fastdfs/file 文件存储目录下创建软连接，将其链接到实际存放数据的目录(可以省略)
+	ln -s /fastdfs/file/data/ /fastdfs/file/data/M00 
+	
+	
+	# 测试访问
+	http://192.168.80.160/group1/M00/00/00/wKgz6lnduTeAMdrcAAEoRmXZPp870.jpeg
