@@ -1,4 +1,4 @@
-package com.ec.gateway.properties;
+package com.ec.zuul.properties;
 
 import java.util.List;
 

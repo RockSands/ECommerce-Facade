@@ -99,7 +99,7 @@
 
 	<modules>
 		<module>EC-Registry</module>
-		<module>EC-Gateway</module>
+		<module>EC-Zuul</module>
 		<module>EC-Commodity</module>
 		<module>EC-Common</module>
 		<module>EC-Upload</module>

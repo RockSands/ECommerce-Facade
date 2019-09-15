@@ -1,4 +1,4 @@
-package com.ec.gateway.filter;
+package com.ec.zuul.filter;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.ec.auth.utils.JwtUtils;
 import com.ec.common.utils.CookieUtils;
-import com.ec.gateway.properties.FilterProperties;
-import com.ec.gateway.properties.JwtProperties;
+import com.ec.zuul.properties.FilterProperties;
+import com.ec.zuul.properties.JwtProperties;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
