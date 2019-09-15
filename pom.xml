@@ -110,5 +110,6 @@
 		<module>EC-User</module>
 		<module>EC-Cart</module>
 		<module>EC-Pay</module>
+		<module>EC-Gateway</module>
 	</modules>
 </project>
