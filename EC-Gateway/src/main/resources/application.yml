@@ -27,27 +27,33 @@ spring:
             - Path=/api/item/**
           filters:
             # AddRequestHeaderGatewayFilterFactory, 为请求添加Header,继承自org.springframework.cloud.gateway.filter.factory
-            - AddRequestHeader=X-Request-Foo, Bar
+            # - AddRequestHeader=X-Request-Foo, Bar
             # StripPrefix截取,转发uri时截去第一部分
-            - StripPrefix=1
-                          # 路径重写
+            # - StripPrefix=1
+            # 路径重写
             # - RewritePath=/foo/(?<segment>.*), /$\{segment}
-zuul:
-  prefix: /api
-  routes:
-    commodity-service: /item/**
-    search-service: /search/**
-    auth-service: /auth/**
-    cart-service: /cart/**
-    pay-service: /order/**
-    # upload为图片,静态文件上传需要缓存zuul,这样浪费资源
-    # 因而一般的配置nginx,将image.ecommerce.com/upload上
-    # 由于nginx已经配置upload路径,因而完整的路径是image.ecommerce.com/upload/upload才能被zuul识别并跳转至upload-service
-    # 如按照上面配置,则路径会变为image.ecommerce.com/upload/**  因而如下方缩写,且strip-prefix=false
-    upload-service:
-      path: /upload/**
-      serviceId: upload-service
-      strip-prefix: false
+        - id: route_search
+          uri: lb://search-service
+          order: 0
+          predicates:
+            - Path=/api/search/**
+        - id: route_auth
+          uri: lb://auth-service
+          order: 0
+          predicates:
+            - Path=/api/auth/**
+        - id: route_order
+          uri: lb://pay-service
+          order: 0
+          predicates:
+            - Path=/api/order/**
+        - id: route_upload
+          uri: lb://upload-service
+          order: 0
+          predicates:
+            - Path=/upload/**
+            
+            
   # 使得Cookie的Host生效,使得手动修改Cookie不会跨域
   sensitive-headers:
   add-host-header: true
