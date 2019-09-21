@@ -30,6 +30,7 @@ import reactor.core.publisher.Mono;
  * @date 2018/10/2
  */
 @Slf4j
+@Component
 @EnableConfigurationProperties({ JwtProperties.class, FilterProperties.class })
 public class LoginFilter implements GlobalFilter, Ordered {
 
@@ -50,6 +51,7 @@ public class LoginFilter implements GlobalFilter, Ordered {
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		URI url = exchange.getRequest().getURI();
+		log.info("Gateway接受请求:" + url.toString());
 		// 白名单
 		if (isAllowPath(url.getPath())) {
 			// 继续执行

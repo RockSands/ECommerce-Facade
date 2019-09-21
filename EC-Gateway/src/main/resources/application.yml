@@ -18,7 +18,7 @@ spring:
           lowerCaseServiceId: true
       routes:
         - id: route_item
-        #指向注册中心的服务
+                      #指向注册中心的服务,lb表示负载均衡,启动rollbin
           uri: lb://commodity-service
           order: 0
           #predicates 断言,改断言有很多配置,比如时间、cookie、header、Host、Method、Path、URL_Param
@@ -74,6 +74,15 @@ hystrix:
         isolation:
           thread:
             timeoutInMillisecond: 50000 # 熔断超时时长：50000ms
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
 ec:
   jwt:
     pubKeyPath: classpath:RSA/id_rsa.pub # 公钥地址
