@@ -26,6 +26,7 @@ spring:
           # /foo匹配会发送至设定的URL
             - Path=/api/item/**
           filters:
+            - RequestTime
             # AddRequestHeaderGatewayFilterFactory, 为请求添加Header,继承自org.springframework.cloud.gateway.filter.factory
             # - AddRequestHeader=X-Request-Foo, Bar
             # StripPrefix截取,转发uri时截去第一部分
@@ -37,26 +38,29 @@ spring:
           order: 0
           predicates:
             - Path=/api/search/**
+          filters:
+            - RequestTime
         - id: route_auth
           uri: lb://auth-service
           order: 0
           predicates:
             - Path=/api/auth/**
+          filters:
+            - RequestTime
         - id: route_order
           uri: lb://pay-service
           order: 0
           predicates:
             - Path=/api/order/**
+          filters:
+            - RequestTime
         - id: route_upload
           uri: lb://upload-service
           order: 0
           predicates:
             - Path=/upload/**
-            
-            
-  # 使得Cookie的Host生效,使得手动修改Cookie不会跨域
-  sensitive-headers:
-  add-host-header: true
+          filters:
+            - RequestTime
 ribbon: # 负载均衡
   ConnectTimeout: 1000 # 连接超时时间(ms)
   ReadTimeout: 3000 # 通信超时时间(ms)
