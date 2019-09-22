@@ -36,6 +36,5 @@ public class JwtProperties {
             log.error("初始化公钥失败", e);
             throw new RuntimeException();
         }
-
     }
 }
