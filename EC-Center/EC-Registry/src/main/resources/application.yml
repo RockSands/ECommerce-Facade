@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: ec-registry
+server:
+  port: 10086
+eureka:
+  client:
+    fetch-registry: false	# 因为是Server,所以不需要定时获取同步
+    register-with-eureka: false # 服务端不需要注册自己
+    service-url:
+      defaultZone: http://127.0.0.1:${server.port}/eureka
+  server:
+    enable-self-preservation: false # 关闭自我保护
+    eviction-interval-timer-in-ms: 5000 # 每隔5秒进行一次服务列表清理

@@ -98,7 +98,6 @@
 	</build>
 
 	<modules>
-		<module>EC-Registry</module>
 		<module>EC-Zuul</module>
 		<module>EC-Commodity</module>
 		<module>EC-Common</module>
@@ -111,5 +110,6 @@
 		<module>EC-Cart</module>
 		<module>EC-Pay</module>
 		<module>EC-Gateway</module>
+		<module>EC-Center</module>
 	</modules>
 </project>
