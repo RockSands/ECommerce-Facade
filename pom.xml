@@ -30,6 +30,7 @@
 	<!-- <repositories> <repository> <id>spring-milestones</id> <name>Spring 
 		Milestones</name> <url>https://repo.spring.io/milestone</url> <snapshots> 
 		<enabled>false</enabled> </snapshots> </repository> </repositories> -->
+	<!-- dependencyManagement仅声明版本,不实际引用,子工程引用时就可以省略版本,达成版本一致的初衷 -->
 	<dependencyManagement>
 		<dependencies>
 			<!-- springCloud -->
@@ -66,7 +67,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
+	<!-- dependencies声明版本,且实际引用,子工程自动生效 -->
 	<dependencies>
 		<!--自省和监控的集成功能 -->
 		<dependency>
