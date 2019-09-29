@@ -1,0 +1,32 @@
+server:
+  port: 8888
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
+spring:
+  application:
+    name: config-server
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:192.168.80.160}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:ecommerce}
+    password: ${RABBIT_MQ_PASSWORD:ecommerce}
+    virtual-host: ${RABBIT_VIRTUAL-HOST:/ecommerce}
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/RockSands/config.git
+          searchPaths: /ecommerce
+          username: 117019049@qq.com
+          password: greenckw5
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

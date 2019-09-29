@@ -6,14 +6,14 @@
 	<artifactId>ECommerce-Facade</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
+<!-- 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.8.RELEASE</version>
 		<relativePath />
 	</parent>
-
+ -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -27,12 +27,17 @@
 		<ecommerce.facade.latest.version>1.0.0-SNAPSHOT</ecommerce.facade.latest.version>
 		<fastDFS.client.version>1.26.1-RELEASE</fastDFS.client.version>
 	</properties>
-	<!-- <repositories> <repository> <id>spring-milestones</id> <name>Spring 
-		Milestones</name> <url>https://repo.spring.io/milestone</url> <snapshots> 
-		<enabled>false</enabled> </snapshots> </repository> </repositories> -->
+
 	<!-- dependencyManagement仅声明版本,不实际引用,子工程引用时就可以省略版本,达成版本一致的初衷 -->
 	<dependencyManagement>
 		<dependencies>
+		    <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.0.8.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 			<!-- springCloud -->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -69,11 +74,12 @@
 	</dependencyManagement>
 	<!-- dependencies声明版本,且实际引用,子工程自动生效 -->
 	<dependencies>
-		<!--自省和监控的集成功能 -->
+		<!--自省和监控的集成功能
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		 -->
 		<!--注册中心 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -89,11 +95,12 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-netflix-hystrix-stream</artifactId>
 		</dependency>
-		<!--日志跟踪 -->
+		<!--日志跟踪
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
+		 -->
 		<!--消息总线 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
