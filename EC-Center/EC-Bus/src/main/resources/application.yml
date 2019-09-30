@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8671}/eureka/
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
 spring:
   application:
     name: ec-bus
@@ -13,3 +13,4 @@ spring:
     port: ${RABBIT_MQ_PORT:5672}
     username: ${RABBIT_MQ_USERNAME:ecommerce}
     password: ${RABBIT_MQ_PASSWORD:ecommerce}
+    virtual-host: ${RABBIT_VIRTUAL-HOST:/ecommerce}

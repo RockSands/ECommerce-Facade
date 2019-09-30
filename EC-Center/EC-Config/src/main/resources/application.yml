@@ -15,6 +15,7 @@ spring:
     virtual-host: ${RABBIT_VIRTUAL-HOST:/ecommerce}
   cloud:
     config:
+      # 配置仓库的分支      label: master
       server:
         git:
           uri: https://github.com/RockSands/config.git
@@ -25,6 +26,7 @@ spring:
       enabled: true
       trace:
         enabled: true
+#暴露bus-refresh接口用于更新git上的配置
 management:
   endpoints:
     web:

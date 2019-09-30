@@ -74,12 +74,11 @@
 	</dependencyManagement>
 	<!-- dependencies声明版本,且实际引用,子工程自动生效 -->
 	<dependencies>
-		<!--自省和监控的集成功能
+		<!--自省和监控的集成功能-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		 -->
 		<!--注册中心 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -95,12 +94,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-netflix-hystrix-stream</artifactId>
 		</dependency>
-		<!--日志跟踪
+		<!--日志跟踪-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
-		 -->
 		<!--消息总线 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -128,7 +126,6 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
-
 	<!-- 构建插件 -->
 	<build>
 		<plugins>
