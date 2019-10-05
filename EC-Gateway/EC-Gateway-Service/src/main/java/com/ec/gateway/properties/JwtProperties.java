@@ -7,8 +7,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.ResourceUtils;
 
-import com.ec.auth.utils.RsaUtils;
-
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

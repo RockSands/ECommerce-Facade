@@ -1,6 +1,5 @@
 server:
   port: ${EUREKA_PORT:8071}
-
 eureka:
   client:
     serviceUrl:

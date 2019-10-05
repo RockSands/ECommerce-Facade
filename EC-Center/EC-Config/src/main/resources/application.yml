@@ -19,7 +19,7 @@ spring:
       server:
         git:
           uri: https://github.com/RockSands/config.git
-          searchPaths: /ecommerce
+          searchPaths: ecommerce
           username: 117019049@qq.com
           password: greenckw5
     bus:
