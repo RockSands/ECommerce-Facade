@@ -1,0 +1,101 @@
+server:
+  port: ${GATEWAY_SERVER_PORT:8443}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
+    registry-fetch-interval-seconds: 5 # 每5秒
+spring:
+  application:
+    name: ec-gateway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # enabled: true   开启注册中心，通过注册中心的服务名进行路由转发
+          enabled: false
+                      # 服务名称小写
+          lowerCaseServiceId: true
+      routes:
+        - id: route_item
+                      #指向注册中心的服务,lb表示负载均衡,启动rollbin
+          uri: lb://commodity-service
+          order: 0
+          #predicates 断言,改断言有很多配置,比如时间、cookie、header、Host、Method、Path、URL_Param
+          predicates:
+          # /foo匹配会发送至设定的URL
+            - Path=/api/item/**
+          filters:
+            - RequestTime
+            # AddRequestHeaderGatewayFilterFactory, 为请求添加Header,继承自org.springframework.cloud.gateway.filter.factory
+            # - AddRequestHeader=X-Request-Foo, Bar
+            # StripPrefix截取,转发uri时截去第一部分
+            - StripPrefix=2
+                          #  路径重写
+            # - RewritePath=/foo/(?<segment>.*), /$\{segment}
+        - id: route_search
+          uri: lb://search-service
+          order: 0
+          predicates:
+            - Path=/api/search/**
+          filters:
+            - RequestTime
+            - StripPrefix=2
+        - id: route_auth
+          uri: lb://auth-service
+          order: 0
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - RequestTime
+            - StripPrefix=2
+        - id: route_order
+          uri: lb://pay-service
+          order: 0
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RequestTime
+            - StripPrefix=2
+        - id: route_upload
+          uri: lb://upload-service
+          order: 0
+          predicates:
+            - Path=/upload/**
+          filters:
+            - RequestTime
+            - StripPrefix=1
+ribbon: # 负载均衡
+  ConnectTimeout: 1000 # 连接超时时间(ms)
+  ReadTimeout: 3000 # 通信超时时间(ms)
+  OkToRetryOnAllOperations: false # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 0 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 0 # 同一实例的重试次数
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 50000 # 熔断超时时长：50000ms
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+ec:
+  jwt:
+    pubKeyPath: classpath:RSA/id_rsa.pub # 公钥地址
+    cookieName: EC_TOKEN # cookie的名称
+  filter:
+    allowPaths:
+    - /api/auth
+    - /api/search
+    - /api/user/register
+    - /api/user/check
+    - /api/user/code
+    - /api/item

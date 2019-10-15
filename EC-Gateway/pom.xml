@@ -21,6 +21,6 @@
 
 	<modules>
 		<module>EC-Gateway-Deploy</module>
-		<module>EC-Gateway-Service</module>
+		<module>EC-Gateway-Server</module>
 	</modules>
 </project>
